@@ -1,0 +1,80 @@
+package com.company;
+
+import java.util.Scanner;
+/**
+ * @brief Класс, представляющий совокупность нескольких элементов.
+ */
+class Rudnik {
+    private PoleznoeIskopayemoe mineral1 = new PoleznoeIskopayemoe(); /**< Первое исокпаемое. */
+    private PoleznoeIskopayemoe mineral2 = new PoleznoeIskopayemoe(); /**< Второе ископаемое. */
+    private PoleznoeIskopayemoe mineral3 = new PoleznoeIskopayemoe(); /**< Третье ископаемое. */
+    private double totalExpenses; /**< Общие затраты на добычу. */
+    /**
+     * @brief Инициализация данных об элементах.
+     * @param w1 Вес первого ископаемого.
+     * @param p1 Цена первого ископаемого.
+     * @param w2 Вес второго ископаемого.
+     * @param p2 Цена второго ископаемого.
+     * @param w3 Вес третьего ископаемого.
+     * @param p3 Цена третьего ископаемого.
+     * @param expenses Общие затраты.
+     */
+    public void Init(double w1, double p1, double w2, double p2, double w3, double p3, double expenses) {
+        mineral1.Init(w1, p1);
+        mineral2.Init(w2, p2);
+        mineral3.Init(w3, p3);
+        totalExpenses = expenses;
+    }
+    /**
+     * @brief Вывод информации о компоненетах компьютера и стоимости вспомогательного оборудования.
+     */
+    public void Display() {
+        System.out.println("Первое ископаемое:");
+        mineral1.Display();
+        System.out.println("Второе ископаемое:");
+        mineral2.Display();
+        System.out.println("Третье ископаемое:");
+        mineral3.Display();
+        System.out.println("Общие затраты: " + totalExpenses + " руб");
+    }
+    /**
+     * @brief Вычисление доходности рудника.
+     * @return Общая стоимость.
+     */
+    public double Revenue() {
+        double revenue = mineral1.MiningCost() + mineral2.MiningCost() + mineral3.MiningCost();
+        return revenue - totalExpenses;
+    }
+    /**
+     * @brief Вычисление самого ценного полезного ископаемого.
+     * @return самое ценное ископаемое.
+     */
+    public PoleznoeIskopayemoe MostValuableMineral() {
+        double cost1 = mineral1.MiningCost();
+        double cost2 = mineral2.MiningCost();
+        double cost3 = mineral3.MiningCost();
+
+        if (cost1 >= cost2 && cost1 >= cost3) {
+            return mineral1;
+        } else if (cost2 >= cost1 && cost2 >= cost3) {
+            return mineral2;
+        } else {
+            return mineral3;
+        }
+    }
+    /**
+     * @brief Считывание данных об ископаемых и общих затратах.
+     */
+    public void Read() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите информацию о трех типах ископаемых:");
+        System.out.println("Первое ископаемое:");
+        mineral1.Read();
+        System.out.println("Второе ископаемое:");
+        mineral2.Read();
+        System.out.println("Третье ископаемое:");
+        mineral3.Read();
+        System.out.print("Введите общие затраты на добычу (руб): ");
+        totalExpenses = scanner.nextDouble();
+    }
+}
