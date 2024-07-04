@@ -1,0 +1,43 @@
+package com.company;
+/**
+ * @brief Класс Полезное ископаемое: является элементом, имеющим свою цену за грамм и вес добытого.
+ */
+import java.util.Scanner;
+
+class PoleznoeIskopayemoe {
+    private double weight; /**< Вес ископаемоего. */
+    private double pricePerGram; /**< Цена за грамм. */
+    /**
+     * @brief Инициализация данных об элементах.
+     * @param weight Вес.
+     * @param pricePerGram Цена за грамм.
+     */
+    public void Init(double weight, double pricePerGram) {
+        this.weight = weight;
+        this.pricePerGram = pricePerGram;
+    }
+    /**
+     * @brief Вывод информации об ископаемом.
+     */
+    public void Display() {
+        System.out.println("Вес добытого: " + weight + " г");
+        System.out.println("Цена за грамм: " + pricePerGram + " руб");
+    }
+    /**
+     * @brief Вычисление общей стоимости ископаемого.
+     * @return Общая стоиомсть ископаемого.
+     */
+    public double MiningCost() {
+        return weight * pricePerGram;
+    }
+    /**
+     * @brief Считывание данных об ископаемом с клавиатуры.
+     */
+    public void Read() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите вес добытого: ");
+        weight = scanner.nextDouble();
+        System.out.print("Введите цену за грамм: ");
+        pricePerGram = scanner.nextDouble();
+    }
+}
