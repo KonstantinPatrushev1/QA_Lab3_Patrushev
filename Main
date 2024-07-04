@@ -1,0 +1,42 @@
+package com.company;
+/**
+ * @brief Главный класс программы.
+ */
+import java.util.Scanner;
+
+public class Main {
+    /**
+     * @brief Точка входа в программу.
+     * @param args Аргументы командной строки.
+     * \image html iskopaemoe.png width=400cm
+     * \f[
+     * |I_2|=\left| \int_{0}^T \psi(t)
+     * \left\{
+     * u(a,t)-
+     * \int_{\gamma(t)}^a
+     * \frac{d\theta}{k(\theta,t)}
+     * \int_{a}^\theta c(\xi)u_t(\xi,t)\,d\xi
+     * \right\} dt
+     * \right|
+     * \f]
+     *
+     */
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // Создание объекта класса Rudnik
+        Rudnik mine = new Rudnik();
+        // Ввод данных о руднике
+        mine.Read();
+        // Вывод данных о руднике и ископаемых
+        System.out.println("\nИнформация о руднике и его ископаемых:");
+        mine.Display();
+        // Вывод доходности
+        System.out.println("\nДоходность рудника: " + mine.Revenue() + " руб");
+        // Вывод самого ценного ископаемого
+        PoleznoeIskopayemoe valuableMineral = mine.MostValuableMineral();
+        System.out.println("Самое ценное ископаемое:");
+        valuableMineral.Display();
+
+        scanner.close();
+    }
+}
